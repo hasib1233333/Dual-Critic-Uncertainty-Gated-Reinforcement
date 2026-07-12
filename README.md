@@ -1,1 +1,9 @@
-# Dual-Critic-Uncertainty-Gated-Reinforcement
+
+Title:
+Dual-Critic Uncertainty-Gated Reinforcement Learning for Vision-Dropout-Robust Image-Based Visual Servoing
+
+Abstract:
+Image-based visual servoing (IBVS) assumes a continuous camera feed, but real eye-in-hand systems suffer intermittent perception loss from occlusion, network jitter, or sensor faults, while proprioception stays reliable. We study this failure mode — IBVS under a two-state Markov camera-dropout channel — and propose DCUG-PPO, a reinforcement-learning controller whose actor is anchored to a model-based fallback (robot kinematics plus an EKF target estimate) through a gate trained entirely via PPO's own policy objective, with no auxiliary loss. Across ten training seeds and three dropout severities, DCUG-PPO reaches 91.4 ± 3.6% success at moderate dropout, versus 68.0% for a classical IBVS-plus-Kalman baseline and 83.1 ± 27.8% for a matched single-critic PPO baseline that collapses to 0% in one of ten seeds — a failure DCUG-PPO never shows. TD3, a stronger off-policy baseline, achieves higher raw success (98.7 ± 0.9%) with no collapse, but roughly 5× the control effort and 40× the jerk of DCUG-PPO. We frame DCUG-PPO's advantage as specific — over on-policy PPO in success and reliability, and over every tested controller in smoothness — not a blanket claim. Seed-level significance tests against single-critic PPO do not reach p < 0.05 at n = 10; the robust finding is the qualitative one-in-ten collapse rate, corroborated zero-shot across three simulation tiers: idealized kinematics, MuJoCo rigid-body dynamics, and rendered images with OpenCV feature detection. We report all results, including TD3's superior performance and the ablation's narrowing gap, without embellishment, and note what remains open: no physical-hardware validation, and no SAC, PPO-LSTM, Dreamer, or distributional-RL comparisons.
+
+Keywords:
+image-based visual servoing, reinforcement learning, proximal policy optimization, sensor dropout, uncertainty-aware control, dual-critic learning, eye-in-hand robotics
