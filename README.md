@@ -11,7 +11,10 @@ Keywords:
 
 image-based visual servoing, reinforcement learning, proximal policy optimization, sensor dropout, uncertainty-aware control, dual-critic learning, eye-in-hand robotics
 
-Paper 2 Extension:
+Paper 2
+
+Extension:
+
 Title: Does Fallback-Anchored Uncertainty Gating Help Off-Policy Reinforcement Learning? A Short Study Combining DCUG-Style Gating with TD3
 
 Abstract:
