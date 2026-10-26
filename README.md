@@ -21,3 +21,17 @@ Abstract:
 Our companion paper proposed DCUG-PPO, which anchors an on-policy PPO actor to a model-based fallback controller through a learned uncertainty gate, and found that this fixes a specific training-collapse failure mode in on-policy learning for image-based visual servoing under intermittent camera dropout. That paper also found that TD3, an off-policy algorithm with no such anchoring, matches or exceeds DCUG-PPO’s raw performance and shows no collapse across the seeds tested, and explicitly left open whether fallback-anchoring and off-policy replay-buffer training are complementary or redundant routes to reliability. This paper answers that question directly: we implement DCUG-TD3, applying the identical fallback-anchoring and dual-critic gating mechanism to TD3’s deterministic policy, and train and evaluate it across ten seeds under the same protocol; we also retrained vanilla TD3 from three to ten seeds so both methods are compared with matched statistical power. The result is a clean negative one: DCUG-TD3 is statistically indistinguishable from vanilla TD3 on success rate at every severity (p = 0.22–0.96), shows no improvement in control smoothness, and the learned gate converges to a mean value of α = 0.85 ± 0.16 – mostly trusting the raw policy rather than the fallback. We interpret this as evidence that fallback-anchoring’s benefit is specific to the on-policy training-collapse mode it was designed to fix, not a general-purpose robustness booster that stacks with any base algorithm. We report this null result in full, because it clarifies that the companion paper’s mechanism is not simply "always helpful" and sharpens what it actually does.
 
 Keywords: reinforcement learning, TD3, uncertainty-aware control, off-policy learning, ablation study, image-based visual servoing
+
+Paper 3
+(Vresion 2)
+Title
+
+Fallback-anchored uncertainty-gated reinforcement learning for image-based visual servoing under intermittent camera dropout
+
+Abstract
+
+Eye-in-hand cameras lose their target through occlusion, blur, and transmission faults, while joint encoders keep reporting the robot pose. We propose fallback-anchored uncertainty-gated proximal policy optimization (FAUG-PPO) for image-based visual servoing under such dropout. A classical servoing law, driven by a calibrated Kalman predictor, supplies a fallback command. A learned gate blends this command with a policy proposal, and because the blend is an exact reparameterization of the Gaussian action, the PPO objective alone trains the gate. At deployment, an authority cap computed from the predictor’s covariance bounds the gate, which makes a conditional ultimate error bound applicable. With the cap fixed on development data, FAUG-PPO reached 91.9% severe-dropout success in closed-loop replay of three held-out real camera sequences. The classical controller reached 85.2%, and SAC and TD3 at most 81.0%. On a torque-limited six-joint arm with 200 ms latency, FAUG-PPO kept 78.7%, while the off-policy controllers collapsed.
+
+Keywords
+
+Visual servoing; Reinforcement learning; Sensor dropout; Kalman filtering; Fault-tolerant control; Proximal policy optimization
